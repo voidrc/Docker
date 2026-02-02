@@ -1,0 +1,36 @@
+networks:
+  secnet:
+    external: true
+
+volumes:
+  metasploit_data:
+  zap_data:
+
+
+services:
+  metasploit:
+    image: metasploitframework/metasploit-framework
+    container_name: metasploit
+    networks: [secnet]
+    tty: true
+    stdin_open: true
+    volumes:
+      - metasploit_data:/home/msf/.msf4
+    restart: unless-stopped
+
+  zap:
+    image: zaproxy/zap-stable
+    container_name: zap
+    networks: [secnet]
+    ports:
+      - "8083:8080"
+    volumes:
+      - zap_data:/zap/wrk
+    command: zap-webswing.sh
+    restart: unless-stopped
+
+  nmap:
+    image: instrumentisto/nmap
+    container_name: nmap
+    networks: [secnet]
+    entrypoint: ["sleep", "infinity"]

@@ -1,0 +1,22 @@
+networks:
+  secnet:
+    external: true
+
+services:
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa
+    networks: [secnet]
+    ports:
+      - "8081:80"
+    environment:
+      - MYSQL_PASS=oisaefhowyafuheewfghusbhefb29y643rb7rf4rg
+    restart: unless-stopped
+
+  juice_shop:
+    image: bkimminich/juice-shop
+    container_name: juice_shop
+    networks: [secnet]
+    ports:
+      - "8082:3000"
+    restart: unless-stopped

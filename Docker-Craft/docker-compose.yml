@@ -9,31 +9,35 @@ services:
     profiles: ["atm10"]
     tty: true
     stdin_open: true
+
     ports:
       - "25565:25565"
+
     environment:
       EULA: "TRUE"
+      ONLINE_MODE: "false"
+      ALLOW_FLIGHT: "true"
+      PVP: "false"
+      DIFFICULTY: "3"
+
       OPS: "KaYdZyU_1"
+
       TYPE: "AUTO_CURSEFORGE"
       VERSION: "1.21.1"
       CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/all-the-mods-10/files/7361423"
       CF_API_KEY: ${CF_API_KEY}
+      
       MEMORY: "10240M"
-      ONLINE_MODE: "false"
-      DIFFICULTY: "3"
       SEED: "836690723"
       SIMULATION_DISTANCE: "4"
       VIEW_DISTANCE: "6"
       JVM_OPTS: "-Xms6G -Xmx10G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:G1NewSizePercent=20 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=15 -XX:G1HeapWastePercent=5"
+
     volumes:
       - "./ATM-10/data:/data"
-    deploy:
-      resources:
-        limits:
-          memory: 9G
-        reservations:
-          memory: 8G
     restart: unless-stopped
+
+
 
   # School-21 Minecraft Server (Server 2)
   school21-server:
@@ -42,22 +46,28 @@ services:
     profiles: ["school21"]
     tty: true
     stdin_open: true
+
     ports:
       - "25565:25565"
+
     environment:
       EULA: "TRUE"
+      ONLINE_MODE: "false"
+      ALLOW_FLIGHT: "true"
+      PVP: "false"
+      DIFFICULTY: "1"
+
+      OPS: "KaYdZyU_1"
+
       TYPE: "AUTO_CURSEFORGE"
       CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/deceasedcraft/files/5525524"
       CF_API_KEY: ${CF_API_KEY}
       MEMORY: "9216M"
-      ONLINE_MODE: "false"
-      DIFFICULTY: "1"
-      PVP: "false"
-      OPS: "KaYdZyU_1"
-      ALLOW_FLIGHT: "true"
+
     volumes:
       - "./School-21/data:/data"
     restart: unless-stopped
+
 
   # PlayIt Hosting Agent
   playit-agent:
@@ -69,8 +79,3 @@ services:
       SECRET_KEY: ${SECRET_KEY}
     restart: unless-stopped
     network_mode: host  # PlayIt agent needs host networking to function properly
-
-# Networks (optional, for future expansion)
-networks:
-  default:
-    name: dockercraft-network

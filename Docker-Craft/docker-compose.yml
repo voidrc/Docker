@@ -70,14 +70,3 @@ services:
       - "./School-21/data:/data"
     restart: unless-stopped
 
-
-  # PlayIt Hosting Agent
-  playit-agent:
-    build:
-      context: ./PlayIt
-      dockerfile: Dockerfile
-    container_name: playit-hosting
-    environment:
-      SECRET_KEY: ${SECRET_KEY}
-    restart: unless-stopped
-    network_mode: host  # PlayIt agent needs host networking to function properly

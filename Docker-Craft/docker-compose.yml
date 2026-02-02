@@ -1,15 +1,16 @@
 # Docker-Craft Unified Compose File
-# Manages all servers and hosting services
+# Manages all servers
 
 services:
   # ATM-10 Minecraft Server (Server 1)
   atm10-server:
+
     image: itzg/minecraft-server:latest
     container_name: atm10-minecraft
     profiles: ["atm10"]
+
     tty: true
     stdin_open: true
-
     ports:
       - "25565:25565"
 
@@ -41,12 +42,13 @@ services:
 
   # School-21 Minecraft Server (Server 2)
   school21-server:
+
     image: itzg/minecraft-server:java17
     container_name: school21-minecraft
     profiles: ["school21"]
+
     tty: true
     stdin_open: true
-
     ports:
       - "25565:25565"
 
@@ -62,20 +64,8 @@ services:
       TYPE: "AUTO_CURSEFORGE"
       CF_PAGE_URL: "https://www.curseforge.com/minecraft/modpacks/deceasedcraft/files/5525524"
       CF_API_KEY: ${CF_API_KEY}
-      MEMORY: "9216M"
+      MEMORY: "10240M"
 
     volumes:
       - "./School-21/data:/data"
     restart: unless-stopped
-
-
-  # PlayIt Hosting Agent
-  playit-agent:
-    build:
-      context: ./PlayIt
-      dockerfile: Dockerfile
-    container_name: playit-hosting
-    environment:
-      SECRET_KEY: ${SECRET_KEY}
-    restart: unless-stopped
-    network_mode: host  # PlayIt agent needs host networking to function properly

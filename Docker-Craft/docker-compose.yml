@@ -71,9 +71,7 @@ services:
 
   # PlayIt Hosting Agent
   playit-agent:
-    build:
-      context: ./PlayIt
-      dockerfile: Dockerfile
+    image: ghcr.io/playit-cloud/playit-agent:0.16
     container_name: playit-hosting
     environment:
       SECRET_KEY: ${SECRET_KEY}

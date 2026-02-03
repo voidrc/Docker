@@ -1,0 +1,78 @@
+OffSec-21 Linux CTF
+==================
+
+Rules:
+- Not every FLAG{...} you see is valid.
+- Think. Verify. Then submit.
+
+Hints unlock understanding, not answers.
+
+
+[01] navigation
+---------------
+Some paths are deeper than they look.
+The filesystem is a tree, not a list.
+If you feel lost, ask where you are first.
+
+
+[02] hidden files
+-----------------
+Linux hides things without locking them.
+Visibility is a choice, not security.
+Look again, but differently.
+
+
+[03] groups
+-----------
+You are not alone on this system.
+Membership grants quiet privileges.
+The system already knows who you belong to.
+
+
+[04] sudo
+---------
+Power is granted per command.
+Root is not always required.
+Check what you are trusted to run.
+
+
+[05] cron
+---------
+Some actions happen when nobody is watching.
+Automation leaves footprints.
+Time is part of the attack surface.
+
+
+[06] services
+-------------
+Not everything listens on the outside.
+Localhost is still a network.
+If something is open, try talking to it.
+
+
+[07] logs
+---------
+Systems remember their mistakes.
+Logs tell stories after the fact.
+Search beats scrolling.
+
+
+[08] PATH
+---------
+Commands are found by order, not magic.
+Names can lie.
+The system trusts what it finds first.
+
+
+[9] symlinks
+-------------
+Links are not the files they point to.
+Permissions can be misleading.
+Follow the path, not the appearance.
+
+
+Final note
+----------
+If a flag feels too easy, it probably is.
+Linux rarely gives rewards without context.
+Curiosity is good. Assumptions are expensive.

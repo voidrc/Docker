@@ -5,3 +5,4 @@ Docker-Craft/ATM-10/data/
 Docker-Craft/Deceased-Craft/data/
 *.DS_Store
 */.env
+*.zip

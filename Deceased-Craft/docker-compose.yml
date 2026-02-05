@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  deceased-craft:
+    build: .
+    container_name: deceased-craft-server
+    image: deceased-craft:latest
+    ports:
+      - "25565:25565"  # Minecraft server port
+    volumes:
+      - ./server-data/world:/minecraft/world
+      - ./server-data/logs:/minecraft/logs
+      - ./server-data/config:/minecraft/config
+      - ./server-data/mods:/minecraft/mods
+      - ./server-data/backups:/minecraft/backups
+      # Persist server properties
+      - ./server-data/server.properties:/minecraft/server.properties
+      - ./server-data/ops.json:/minecraft/ops.json
+      - ./server-data/whitelist.json:/minecraft/whitelist.json
+    environment:
+      # Accept Minecraft EULA
+      - EULA=true
+      # Memory allocation (adjust based on your needs)
+      - MEMORY_MIN=2G
+      - MEMORY_MAX=4G
+      # Java optimization flags
+      - JAVA_OPTS=-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1
+    restart: unless-stopped
+    stdin_open: true  # Allows console interaction
+    tty: true
+    networks:
+      - minecraft
+
+networks:
+  minecraft:
+    driver: bridge

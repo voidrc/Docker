@@ -2,6 +2,6 @@ Docker-Craft/mc_data/
 Docker-Craft/logs/
 Docker-Craft/crash-reports/
 Docker-Craft/ATM-10/data/
-Docker-Craft/School-21/data/
+Docker-Craft/Deceased-Craft/data/
 *.DS_Store
 */.env

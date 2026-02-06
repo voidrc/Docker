@@ -6,3 +6,4 @@ Docker-Craft/Deceased-Craft/data/
 *.DS_Store
 */.env
 *.zip
+*/server-data/

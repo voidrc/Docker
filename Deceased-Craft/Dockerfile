@@ -1,5 +1,5 @@
 # Multi-stage build for DeceasedCraft Minecraft Server
-FROM eclipse-temurin:17-jdk-alpine AS builder
+FROM amazoncorretto:17-alpine AS builder
 
 WORKDIR /setup
 
@@ -9,41 +9,39 @@ RUN apk add --no-cache \
     curl \
     unzip
 
-# The server files should be placed in the build context
-# Copy server pack (user needs to download and place it)
+# Copy and extract server pack
 COPY DeceasedCraft_Server_*.zip /setup/
-
-# Extract server pack
-RUN unzip DeceasedCraft_Server_*.zip -d /server && \
+RUN unzip DeceasedCraft_Server_*.zip && \
     rm DeceasedCraft_Server_*.zip
 
-# Install Forge
-WORKDIR /server
-RUN if [ -f forge-*.jar ]; then \
-        java -jar forge-*.jar --installServer; \
-    fi
+# Move to the extracted folder (nested structure)
+WORKDIR /setup/DeceasedCraft_Server_v5.5.5
+
+# Install Forge server
+RUN java -jar forge-*-installer.jar --installServer && \
+    rm -f forge-*-installer.jar
 
 # Runtime stage
-FROM eclipse-temurin:17-jre-alpine
+FROM amazoncorretto:17-alpine
 
-# Install bash for run.bat compatibility
+# Install bash for server scripts
 RUN apk add --no-cache bash
 
 WORKDIR /minecraft
 
 # Copy server files from builder
-COPY --from=builder /server /minecraft
+COPY --from=builder /setup/DeceasedCraft_Server_v5.5.5 /minecraft/
 
 # Copy startup script
 COPY start-server.sh /minecraft/
 
-# Make scripts executable
+# Make startup script executable
 RUN chmod +x /minecraft/start-server.sh
 
-# Accept EULA by default (can be overridden via environment variable)
+# Accept EULA by default
 ENV EULA=true \
     MEMORY_MIN=2G \
-    MEMORY_MAX=4G \
+    MEMORY_MAX=10G \
     JAVA_OPTS="-XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200"
 
 # Expose Minecraft port

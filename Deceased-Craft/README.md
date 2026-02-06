@@ -79,14 +79,19 @@ To exit console without stopping server: Press `Ctrl+P` then `Ctrl+Q`
 
 If you want players with cracked/pirated Minecraft to join:
 
-1. Go to: `server-data/server.properties`
-2. Find or add this line:
-```
-online-mode=false
-```
-3. Save the file
-4. Restart server:
+1. Access the running container:
 ```bash
+docker compose exec deceased-craft sh
+```
+
+2. Edit server.properties:
+```bash
+sed -i 's/online-mode=true/online-mode=false/' server.properties
+```
+
+3. Exit and restart:
+```bash
+exit
 docker compose restart
 ```
 
@@ -128,14 +133,19 @@ Press `Ctrl+P` then `Ctrl+Q` to exit console.
 
 ## Turn Off PvP (Player vs Player Combat)
 
-1. Open: `server-data/server.properties`
-2. Find or add this line:
-```
-pvp=false
-```
-3. Save the file
-4. Restart server:
+1. Access the running container:
 ```bash
+docker compose exec deceased-craft sh
+```
+
+2. Edit server.properties:
+```bash
+sed -i 's/pvp=true/pvp=false/' server.properties
+```
+
+3. Exit and restart:
+```bash
+exit
 docker compose restart
 ```
 
@@ -145,14 +155,19 @@ Players can still hit each other but won't take damage.
 
 ## Allow Flight (Creative Mode Flying)
 
-1. Open: `server-data/server.properties`
-2. Find or add this line:
-```
-allow-flight=true
-```
-3. Save the file
-4. Restart server:
+1. Access the running container:
 ```bash
+docker compose exec deceased-craft sh
+```
+
+2. Edit server.properties:
+```bash
+sed -i 's/allow-flight=false/allow-flight=true/' server.properties
+```
+
+3. Exit and restart:
+```bash
+exit
 docker compose restart
 ```
 
@@ -290,13 +305,21 @@ Backups are saved in: `server-data/backups/`
 
 All server data is in `server-data/` folder:
 - **World files:** `server-data/world/`
-- **Mods:** `server-data/mods/`
-- **Config files:** `server-data/config/`
 - **Logs:** `server-data/logs/`
 - **Backups:** `server-data/backups/`
-- **Settings:** `server-data/server.properties`
-- **Admin list:** `server-data/ops.json`
-- **Whitelist:** `server-data/whitelist.json`
+
+**Mods and Config:**
+- Mods and configs are **built into the Docker image** from the server pack
+- To customize mods: Stop server, modify files in image, rebuild:
+  ```bash
+  docker compose down
+  docker compose build
+  docker compose up -d
+  ```
+- To extract current config for reference:
+  ```bash
+  docker cp deceased-craft-server:/minecraft/config ./extracted-config/
+  ```
 
 ---
 

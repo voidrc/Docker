@@ -1,12 +1,13 @@
 FROM ubuntu:22.04
 
 RUN apt update && apt install -y \
-    openssh-server sudo cron net-tools procps \
-    && useradd -m ctf && echo "ctf:ctf" | chpasswd
+    openssh-server sudo cron net-tools procps netcat-openbsd zsh \
+    && useradd -m -s /bin/zsh ctf && echo "ctf:ctf" | chpasswd
 
 RUN mkdir /var/run/sshd
 
 COPY reset_ctf.sh /usr/local/bin/reset_ctf.sh
+COPY TASKs.txt /home/ctf/TASKs.txt
 COPY setup.sh /setup.sh
 RUN chmod +x /setup.sh && /setup.sh
 

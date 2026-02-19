@@ -50,7 +50,7 @@ Some actions happen when nobody is watching.
 Automation leaves footprints.
 Time is part of the attack surface.
 
-Hint: /etc/cron.d holds scheduled tasks. Where do they drop files?
+Hint: /etc/cron.d holds scheduled tasks(flag). Where do they drop files?
 
 
 [06] services

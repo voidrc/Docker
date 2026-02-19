@@ -6,13 +6,15 @@ services:
     ports:
       - "25565:25565" # Minecraft server port
     volumes:
-      # Only mount data that changes during gameplay
+      # Server configuration files
+      - ./server-data/server.properties:/minecraft/server.properties
+      - ./server-data/default-server.properties:/minecraft/default-server.properties
+      - ./server-data/ops.json:/minecraft/ops.json
+      # World and gameplay data
       - ./server-data/world:/minecraft/world
       - ./server-data/logs:/minecraft/logs
       - ./server-data/backups:/minecraft/backups
-      # Don't mount config or mods - they're in the image
-      # To customize: docker cp deceased-craft-server:/minecraft/config ./server-data/
-      # Then modify and rebuild the image
+
     environment:
       # Accept Minecraft EULA
       - EULA=true

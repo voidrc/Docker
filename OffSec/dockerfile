@@ -12,4 +12,4 @@ COPY setup.sh /setup.sh
 RUN chmod +x /setup.sh && /setup.sh
 
 EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/bin/bash", "-lc", "cron && /usr/sbin/sshd -D"]

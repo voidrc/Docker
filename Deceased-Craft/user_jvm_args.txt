@@ -1,0 +1,5 @@
+# Xms and Xmx set the minimum and maximum RAM usage, respectively.
+-Xms
+-Xmx
+# Additional JVM optimization flags
+

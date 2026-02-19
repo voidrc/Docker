@@ -1,6 +1,7 @@
 # OffSec-21 CTF Solutions
 
 ## Challenge 01: Navigation
+
 **Flag:** `school-21{n4v1g4t3_d33p3r_7h4n_y0u_th1nk}`
 
 ```bash
@@ -13,6 +14,7 @@ The directory name `-` is unusual and requires proper escaping or path specifica
 ---
 
 ## Challenge 02: Hidden Files
+
 **Flag:** `5CH00L-21{h1dd3n_1n_pl41n_s1gh7}`
 
 ```bash
@@ -25,6 +27,7 @@ Files starting with `.` are hidden by default in Linux.
 ---
 
 ## Challenge 03: Groups
+
 **Flag:** `ScHoOl-21{gr0up_pr1v1l3g3s_unl0ck3d}`
 
 ```bash
@@ -38,10 +41,12 @@ The user is member of the `secret` group, which has read access to the flag.
 ---
 
 ## Challenge 04: Sudo
+
 **Flag:** `school-21{sud0_p0w3r_w1th0ut_r00t}`
 
 ```bash
 sudo -l
+sudo ls /root
 sudo cat /root/flag_sudo.txt
 ```
 
@@ -50,9 +55,11 @@ Limited sudo access allows reading specific files as root.
 ---
 
 ## Challenge 05: Cron
+
 **Flag:** `SCHOOL-21{t1m3_b4s3d_4ut0m4t10n}`
 
 ```bash
+ps aux | grep [c]ron
 cat /etc/cron.d/flag
 # Wait for cron to run (every minute)
 cat /tmp/flag_cron.txt
@@ -63,6 +70,7 @@ Automated task copies the flag to a readable location.
 ---
 
 ## Challenge 06: Services
+
 **Flag:** `school-21{l0c4lh0st_s3rv1c3s_c0unt}`
 
 ```bash
@@ -77,6 +85,7 @@ Service listens on localhost port 9001, returns base64-encoded flag.
 ---
 
 ## Challenge 07: Logs
+
 **Flag:** `school-21{l0gs_t3ll_th3_truth}`
 
 ```bash
@@ -91,6 +100,7 @@ Flag stored in logs with ROT13 encoding.
 ---
 
 ## Challenge 08: PATH
+
 **Flag:** `school-21{p4th_h1j4ck_succ3ss}`
 
 ```bash
@@ -107,6 +117,7 @@ Custom `ls` in user's bin directory is found first in PATH.
 ---
 
 ## Challenge 09: Symlinks
+
 **Flag:** `school-21{symb0l1c_l1nks_f0ll0w3d}`
 
 ```bash
@@ -121,6 +132,7 @@ Symlink points to root-owned file, but can be read. Flag is hex-encoded.
 ---
 
 ## Flag Summary
+
 1. `school-21{n4v1g4t3_d33p3r_7h4n_y0u_th1nk}`
 2. `5CH00L-21{h1dd3n_1n_pl41n_s1gh7}`
 3. `ScHoOl-21{gr0up_pr1v1l3g3s_unl0ck3d}`

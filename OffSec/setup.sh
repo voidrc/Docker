@@ -47,8 +47,8 @@ chmod 644 /var/log/ctf_secret.log
 
 ### CHAL 08 — PATH hijack
 mkdir /home/ctf/bin
-echo 'echo "school-21{p4th_h1j4ck_succ3ss}"' > /home/ctf/bin/ls
-chmod +x /home/ctf/bin/ls
+echo 'echo "school-21{p4th_h1j4ck_succ3ss}"' > /home/ctf/bin/uptime
+chmod +x /home/ctf/bin/uptime
 echo 'export PATH=/home/ctf/bin:$PATH' >> /home/ctf/.zshrc
 
 ### CHAL 09 — symlink
@@ -67,7 +67,7 @@ chattr +i /root/flag_sudo.txt
 chattr +i /root/flag_cron.txt
 chattr +i /etc/service_flag.txt
 chattr +i /var/log/ctf_secret.log
-chattr +i /home/ctf/bin/ls
+chattr +i /home/ctf/bin/uptime
 chattr +i /root/flag_symlink.txt
 
 # Make directories immutable too

@@ -106,13 +106,13 @@ Flag stored in logs with ROT13 encoding.
 ```bash
 # Check .zshrc for PATH manipulation
 cat ~/.zshrc
-# Run the hijacked ls
-ls
-# Or use full path to see real directory
-/bin/ls
+# Run the hijacked command
+uptime
+# Or use full path to run the real binary
+/usr/bin/uptime
 ```
 
-Custom `ls` in user's bin directory is found first in PATH.
+Custom `uptime` in user's bin directory is found first in PATH.
 
 ---
 

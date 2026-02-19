@@ -11,6 +11,7 @@ chattr -i /root/flag_cron.txt 2>/dev/null || true
 chattr -i /etc/service_flag.txt 2>/dev/null || true
 chattr -i /var/log/ctf_secret.log 2>/dev/null || true
 chattr -i /home/ctf/bin/ls 2>/dev/null || true
+chattr -i /home/ctf/bin/uptime 2>/dev/null || true
 chattr -i /root/flag_symlink.txt 2>/dev/null || true
 chattr -i ~/- 2>/dev/null || true
 chattr -i /etc/s21_groups 2>/dev/null || true

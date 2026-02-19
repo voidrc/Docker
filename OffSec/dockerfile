@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 RUN apt update && apt install -y \
-    openssh-server sudo cron net-tools procps netcat-openbsd zsh \
+    openssh-server sudo cron net-tools procps netcat-openbsd zsh xxd \
     && useradd -m -s /bin/zsh ctf && echo "ctf:ctf" | chpasswd
 
 RUN mkdir /var/run/sshd
@@ -12,4 +12,4 @@ COPY setup.sh /setup.sh
 RUN chmod +x /setup.sh && /setup.sh
 
 EXPOSE 22
-CMD ["/bin/bash", "-lc", "cron && /usr/sbin/sshd -D"]
+CMD ["/bin/bash", "-lc", "cron && nohup sh -c 'while true; do nc -l -p 9001 < /etc/service_flag.txt; done' >/dev/null 2>&1 & exec /usr/sbin/sshd -D"]
